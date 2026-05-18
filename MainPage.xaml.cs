@@ -1,23 +1,41 @@
 ﻿namespace PokemonApp;
 
+using System.Collections.ObjectModel;
+using PokemonApp.Models;
+using PokemonApp.Services;
+using PokemonApp.ViewModels;
+using System.Diagnostics;
+//using Test;
+
+
+// OPEN EMULATOR ~/Library/Android/sdk/emulator/emulator -avd MyAndroidVirtualDevice-API35
+
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly PokemonViewModel _viewModel;
+    public MainPage(PokemonViewModel viewModel)
+    {
+        InitializeComponent();
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+    }
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        await _viewModel.LoadPokemonAsync(1);
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        bool TEST = false; // Change this to true to run the test
+
+        if (TEST)
+        {
+            var client = new HttpClient();
+            var api = new PokemonApiService(client);
+            var test = new PokemonTest(api);
+
+            await test.RunAsync();
+        }
+    }
 }

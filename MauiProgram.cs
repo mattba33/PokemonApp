@@ -1,24 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
+﻿namespace PokemonApp;
 
-namespace PokemonApp;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
+using Microsoft.Maui.Platform;
+using PokemonApp.Models;
+using PokemonApp.Services;
+using PokemonApp.ViewModels;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            });
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+        builder.Services.AddHttpClient<PokemonApiService>();
+        builder.Services.AddSingleton<PokemonViewModel>();
+        builder.Services.AddSingleton<MainPage>();
 
-		return builder.Build();
-	}
+        return builder.Build();
+    }
 }

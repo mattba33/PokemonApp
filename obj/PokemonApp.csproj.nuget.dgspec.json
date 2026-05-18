@@ -27,15 +27,18 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0-android35.0": {
+          "net9.0-android": {
+            "framework": "net9.0-android35.0",
             "targetAlias": "net9.0-android",
             "projectReferences": {}
           },
-          "net9.0-ios26.2": {
+          "net9.0-ios": {
+            "framework": "net9.0-ios26.4",
             "targetAlias": "net9.0-ios",
             "projectReferences": {}
           },
-          "net9.0-maccatalyst26.2": {
+          "net9.0-maccatalyst": {
+            "framework": "net9.0-maccatalyst26.4",
             "targetAlias": "net9.0-maccatalyst",
             "projectReferences": {}
           }
@@ -50,12 +53,17 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
-        "net9.0-android35.0": {
+        "net9.0-android": {
+          "framework": "net9.0-android35.0",
           "targetAlias": "net9.0-android",
           "dependencies": {
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[10.0.8, )"
+            },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -67,7 +75,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.8, )",
+              "version": "[9.0.16, )",
               "autoReferenced": true
             }
           },
@@ -84,8 +92,12 @@
           "warn": true,
           "downloadDependencies": [
             {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.16, 9.0.16]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.14, 9.0.14]"
+              "version": "[9.0.16, 9.0.16]"
             }
           ],
           "frameworkReferences": {
@@ -96,11 +108,16 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.300/PortableRuntimeIdentifierGraph.json"
         },
-        "net9.0-ios26.2": {
+        "net9.0-ios": {
+          "framework": "net9.0-ios26.4",
           "targetAlias": "net9.0-ios",
           "dependencies": {
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[10.0.8, )"
+            },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -112,7 +129,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.8, )",
+              "version": "[9.0.16, )",
               "autoReferenced": true
             }
           },
@@ -129,8 +146,20 @@
           "warn": true,
           "downloadDependencies": [
             {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.16, 9.0.16]"
+            },
+            {
+              "name": "Microsoft.iOS.Ref.net9.0_26.4",
+              "version": "[26.4.9015, 26.4.9015]"
+            },
+            {
+              "name": "Microsoft.iOS.Runtime.iossimulator-arm64.net9.0_26.4",
+              "version": "[26.4.9015, 26.4.9015]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.14, 9.0.14]"
+              "version": "[9.0.16, 9.0.16]"
             }
           ],
           "frameworkReferences": {
@@ -141,11 +170,16 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.300/PortableRuntimeIdentifierGraph.json"
         },
-        "net9.0-maccatalyst26.2": {
+        "net9.0-maccatalyst": {
+          "framework": "net9.0-maccatalyst26.4",
           "targetAlias": "net9.0-maccatalyst",
           "dependencies": {
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[10.0.8, )"
+            },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -157,7 +191,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.8, )",
+              "version": "[9.0.16, )",
               "autoReferenced": true
             }
           },
@@ -175,8 +209,20 @@
           "warn": true,
           "downloadDependencies": [
             {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.16, 9.0.16]"
+            },
+            {
+              "name": "Microsoft.MacCatalyst.Ref.net9.0_26.4",
+              "version": "[26.4.9015, 26.4.9015]"
+            },
+            {
+              "name": "Microsoft.MacCatalyst.Runtime.maccatalyst-arm64.net9.0_26.4",
+              "version": "[26.4.9015, 26.4.9015]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.14, 9.0.14]"
+              "version": "[9.0.16, 9.0.16]"
             }
           ],
           "frameworkReferences": {
@@ -187,7 +233,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

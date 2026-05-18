@@ -1,0 +1,27 @@
+# Build folders
+bin/
+obj/
+
+# User/editor files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# NuGet
+packages/
+
+# Rider
+.idea/
+
+# Android
+*.keystore
+*.jks
+obj/project.nuget.cache
+
