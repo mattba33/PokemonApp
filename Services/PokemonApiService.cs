@@ -15,9 +15,9 @@ public class PokemonApiService
         _httpClient = httpClient;
     }
 
-	public async Task<Pokemon?> GetPokemonAsync(int id)
+	public async Task<Pokemon?> GetPokemonAsync(string pokemonName)
     {
-        var response = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon/{id}");
+        var response = await _httpClient.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonName.ToLower()}");
 
         if (!response.IsSuccessStatusCode)
             return null;

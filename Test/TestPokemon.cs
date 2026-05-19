@@ -24,7 +24,7 @@ public class PokemonTest
     {
         var vm = new PokemonViewModel(_api);
 
-        await vm.LoadPokemonAsync(4); 
+        await vm.LoadPokemonAsync("10079");
 
         Debug.WriteLine("=== POKEMON TEST ===");
 

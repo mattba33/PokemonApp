@@ -10,6 +10,7 @@
 
             <Label Text="{Binding Name}"/>
             <Label Text="{Binding TypesText}"/>
+            <Button Text="Return To Search" Clicked="OnReturnToSearchButtonClicked"/>
             <Image Source="{Binding Sprites.FrontDefault}" MaximumHeightRequest="150"/>
             <Image Source="{Binding Sprites.FrontShiny}" IsVisible="False" MaximumWidthRequest="150"/>
 

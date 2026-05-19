@@ -38,9 +38,9 @@ public class PokemonViewModel : INotifyPropertyChanged
 
     public EvolutionLine? EvolutionLine { get; set; }
 
-    public async Task LoadPokemonAsync(int id)
+    public async Task LoadPokemonAsync(string pokemonName)
     {
-        var pokemon = await _api.GetPokemonAsync(id);
+        var pokemon = await _api.GetPokemonAsync(pokemonName);
         if (pokemon == null) return;
 
         Name = pokemon.Name ?? "";
@@ -80,7 +80,7 @@ public class PokemonViewModel : INotifyPropertyChanged
         }
 
         Moves.Clear();
-        foreach (var move in pokemon.Moves.Take(5))
+        foreach (var move in pokemon.Moves.Take(1))
         {
             var moveinfo = await _api.GetMoveInfoAsync(move.Move.Url);
 
