@@ -11,6 +11,7 @@ public class PokemonStat
     public int BaseStat { get; set; }
     [JsonPropertyName("stat")]
     public StatInfo? Stat { get; set; }
+    public double Progress => BaseStat / 255.0; // May change based on future pokemon
 }
 
 public class StatInfo

@@ -5,7 +5,7 @@ using PokemonApp.Models;
 using PokemonApp.Services;
 using PokemonApp.ViewModels;
 using System.Diagnostics;
-//using Test;
+using Test;
 
 
 // OPEN EMULATOR ~/Library/Android/sdk/emulator/emulator -avd MyAndroidVirtualDevice-API35
@@ -25,7 +25,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        await _viewModel.LoadPokemonAsync(1);
+        await _viewModel.LoadPokemonAsync(10079);
 
         bool TEST = false; // Change this to true to run the test
 

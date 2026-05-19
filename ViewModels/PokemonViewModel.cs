@@ -25,12 +25,16 @@ public class PokemonViewModel : INotifyPropertyChanged
 
     public string Name { get; set; } = "";
     public ObservableCollection<string> Types { get; set; } = new();
+    public string TypesText => string.Join(", ", Types);
     public PokemonSprites? Sprites { get; set; }
     public string Description { get; set; } = "";
     public ObservableCollection<PokemonStat> Stats { get; set; } = new();  
+    public string StatsText => string.Join(", ", Stats.Select(s => $"{s.Stat.Name}: {s.BaseStat}"));
 
     public ObservableCollection<string> Abilities { get; set; } = new();
+    public string AbilitiesText => string.Join(", ", Abilities);
     public ObservableCollection<string> Moves { get; set; } = new();
+    public string MovesText => string.Join("\n", Moves);
 
     public EvolutionLine? EvolutionLine { get; set; }
 
@@ -47,7 +51,7 @@ public class PokemonViewModel : INotifyPropertyChanged
             Types.Add(type.Type.Name);
         }
 
-        Sprites = pokemon.Sprites;
+        Sprites = pokemon.Sprites.FrontDefault != null ? pokemon.Sprites : null;
 
         var species = await _api.GetDescriptionAsync(pokemon.Species.Url);
         if (species != null)
@@ -93,12 +97,12 @@ public class PokemonViewModel : INotifyPropertyChanged
         }
 
         OnPropertyChanged(nameof(Name));
-        OnPropertyChanged(nameof(Types));
+        OnPropertyChanged(nameof(TypesText));
         OnPropertyChanged(nameof(Sprites));
         OnPropertyChanged(nameof(Description));
-        OnPropertyChanged(nameof(Stats));
-        OnPropertyChanged(nameof(Abilities));
-        OnPropertyChanged(nameof(Moves));
+        OnPropertyChanged(nameof(StatsText));
+        OnPropertyChanged(nameof(AbilitiesText));
+        OnPropertyChanged(nameof(MovesText));
         OnPropertyChanged(nameof(EvolutionLine));
     }
 }

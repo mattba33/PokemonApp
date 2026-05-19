@@ -8,10 +8,27 @@
             Padding="30,0"
             Spacing="25">
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="{Binding Name}"/>
+            <Label Text="{Binding TypesText}"/>
+            <Image Source="{Binding Sprites.FrontDefault}" MaximumHeightRequest="150"/>
+            <Image Source="{Binding Sprites.FrontShiny}" IsVisible="False" MaximumWidthRequest="150"/>
+
+            <CollectionView ItemsSource="{Binding Stats}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="{Binding Stat.Name}" WidthRequest="110"/>
+                            <Label Text="{Binding BaseStat}" WidthRequest="25"/>
+                            <ProgressBar Progress="{Binding Progress}" WidthRequest="100"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+            <Label Text="{Binding Description}"/>
+            <Label Text="{Binding AbilitiesText}"/>
+            <Label Text="{Binding EvolutionLine}"/>
+            <Label Text="{Binding MovesText}"/>
 
         </VerticalStackLayout>
     </ScrollView>
