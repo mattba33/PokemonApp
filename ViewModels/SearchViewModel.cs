@@ -3,6 +3,7 @@ namespace PokemonApp.ViewModels;
 using PokemonApp.Models;
 using PokemonApp.Services;
 using System.Windows.Input;
+
 public class SearchViewModel : BindableObject
 {
     private readonly SearchService _searchService;
@@ -10,7 +11,18 @@ public class SearchViewModel : BindableObject
     public SearchViewModel(SearchService searchService)
     {
         _searchService = searchService;
-        SearchCommand = new Command(async () => await SearchAsync());
+
+        SearchCommand = new Command(OnSearchCommandExecuted);
+    }
+
+    private async void OnSearchCommandExecuted()
+    {
+        await SearchAsync();
+
+        if (Result != null)
+        {
+            await Shell.Current.GoToAsync($"//MainPage?name={Result.Name}");
+        }
     }
 
     private string _searchText;
@@ -24,8 +36,8 @@ public class SearchViewModel : BindableObject
         }
     }
 
-    private Pokemon _result;
-    public Pokemon Result
+    private Pokemon? _result;
+    public Pokemon? Result
     {
         get => _result;
         set
@@ -44,5 +56,4 @@ public class SearchViewModel : BindableObject
 
         Result = await _searchService.SearchPokemonAsync(SearchText);
     }
-
 }

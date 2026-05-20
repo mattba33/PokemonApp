@@ -17,5 +17,4 @@ public class SearchService
     {
         return _api.GetPokemonAsync(pokemonName.ToLower());
     }
-
 }

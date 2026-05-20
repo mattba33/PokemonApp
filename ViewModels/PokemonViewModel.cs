@@ -6,7 +6,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using Microsoft.Maui.Controls;
 
+[QueryProperty(nameof(PokemonName), "name")]
 public class PokemonViewModel : INotifyPropertyChanged
 {
     private readonly PokemonApiService _api;
@@ -21,6 +23,23 @@ public class PokemonViewModel : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string name = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
+    
+    private string _pokemonName = "";
+
+    public string PokemonName
+    {
+        get => _pokemonName;
+        set
+        {
+            _pokemonName = value;
+            OnPropertyChanged();
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                _ = LoadPokemonAsync(value);
+            }
+        }
     }
 
     public string Name { get; set; } = "";

@@ -9,5 +9,4 @@ public partial class SearchPage : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
-
 }
