@@ -17,6 +17,7 @@
 		<RootNamespace>PokemonApp</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
+		<EnableXamlHotReload>true</EnableXamlHotReload>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 

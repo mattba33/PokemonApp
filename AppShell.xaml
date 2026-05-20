@@ -4,7 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:PokemonApp.Views"
-    xmlns:local="clr-namespace:PokemonApp"
     Title="PokemonApp">
 
     <ShellContent
@@ -13,8 +12,13 @@
     Route="SearchPage" />
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        Title="Pokemon"
+        ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
+
+    <ShellContent 
+        Title="Known Moves"
+        ContentTemplate="{DataTemplate views:MovesPage}"
+        Route="MovesPage" />
 
 </Shell>

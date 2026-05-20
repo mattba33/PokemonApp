@@ -1,4 +1,4 @@
-﻿namespace PokemonApp;
+﻿namespace PokemonApp.Views;
 
 using System.Collections.ObjectModel;
 using PokemonApp.Models;
@@ -13,17 +13,12 @@ using Microsoft.Maui.Controls;
 
 public partial class MainPage : ContentPage
 {
-    private readonly PokemonViewModel viewModel;
     public MainPage(PokemonViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
     }
 
-    private async void OnReturnToSearchButtonClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//SearchPage");
-    }
 
     protected override void OnAppearing()
     {
