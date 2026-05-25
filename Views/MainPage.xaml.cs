@@ -19,7 +19,6 @@ public partial class MainPage : ContentPage
         BindingContext = viewModel;
     }
 
-
     protected override void OnAppearing()
     {
         base.OnAppearing();

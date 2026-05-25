@@ -52,8 +52,29 @@ public class PokemonViewModel : INotifyPropertyChanged
 
     public ObservableCollection<string> Abilities { get; set; } = new();
     public string AbilitiesText => string.Join(", ", Abilities);
-    public ObservableCollection<string> Moves { get; set; } = new();
-    public string MovesText => string.Join("\n", Moves);
+    public ObservableCollection<MoveViewModel> Moves { get; set; } = new();
+
+    private async Task LoadMovesAsync(Pokemon pokemon)
+    {
+        Moves.Clear();
+        foreach (var move in pokemon.Moves.Take(10))
+        {
+            var moveinfo = await _api.GetMoveInfoAsync(move.Move.Url);
+
+            if (moveinfo == null)
+                continue;
+
+            Moves.Add(new MoveViewModel
+            {
+                Name = move.Move.Name,
+                Power = moveinfo.Power,
+                Accuracy = moveinfo.Accuracy,
+                Type = moveinfo.Type.Name,
+                Description = _api.GetEnglishMoveDescription(moveinfo) ?? ""
+            });
+        }
+        OnPropertyChanged(nameof(Moves));
+    }
 
     public EvolutionLine? EvolutionLine { get; set; }
 
@@ -84,6 +105,8 @@ public class PokemonViewModel : INotifyPropertyChanged
             Stats.Add(stat);
         }
 
+        await LoadMovesAsync(pokemon);
+
         Abilities.Clear();
         foreach (var ability in pokemon.Abilities)
         {
@@ -98,18 +121,6 @@ public class PokemonViewModel : INotifyPropertyChanged
             }
         }
 
-        Moves.Clear();
-        foreach (var move in pokemon.Moves.Take(1))
-        {
-            var moveinfo = await _api.GetMoveInfoAsync(move.Move.Url);
-
-            if (moveinfo != null)
-            {
-                var text = _api.GetEnglishMoveDescription(moveinfo);
-                Moves.Add($"{move.Move.Name} - Power: {moveinfo.Power} Accuracy: {moveinfo.Accuracy} Type: {moveinfo.Type.Name} - {text}");
-            }
-        }
-
         if (species?.EvolutionChain?.Url != null)
         {
             EvolutionLine = await _api.GetEvolutionLineAsync(species.EvolutionChain.Url);
@@ -121,7 +132,6 @@ public class PokemonViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(Description));
         OnPropertyChanged(nameof(StatsText));
         OnPropertyChanged(nameof(AbilitiesText));
-        OnPropertyChanged(nameof(MovesText));
         OnPropertyChanged(nameof(EvolutionLine));
-    }
+    } 
 }

@@ -5,20 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PokemonApp.Views.MovesPage">
 
-    <VerticalStackLayout
-        Padding="20"
-        Spacing="20">
+    <CollectionView ItemsSource="{Binding Moves}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border Padding="10" Margin="5" Stroke="Gray" StrokeThickness="1">
+                    <VerticalStackLayout Spacing="5">
 
-        <Label
-            Text="Search Pokémon"
-            FontSize="24"
-            HorizontalOptions="Center" />
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
 
-        <SearchBar
-            Placeholder="Search Pokémon"
-            Text="{Binding SearchText}"
-            SearchCommand="{Binding SearchCommand}" />
+                        <HorizontalStackLayout Spacing="2.5">
+                            <Label Text="Type:"/>
+                            <Label Text="{Binding Type}" />
 
-    </VerticalStackLayout>
+                            <Label Text="| Power:" />
+                            <Label Text="{Binding DisplayPower}" />
 
+                            <Label Text="| Accuracy:" />
+                            <Label Text="{Binding DisplayAccuracy}" />
+
+                        </HorizontalStackLayout>
+
+                        <Label Text="{Binding Description}" LineBreakMode="WordWrap"/>
+
+                    </VerticalStackLayout>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

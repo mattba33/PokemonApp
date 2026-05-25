@@ -4,8 +4,9 @@ using PokemonApp.ViewModels;
 
 public partial class MovesPage : ContentPage
 {
-    public MovesPage()
+    public MovesPage(PokemonViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 }
