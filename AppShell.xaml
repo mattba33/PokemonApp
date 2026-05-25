@@ -21,4 +21,9 @@
         ContentTemplate="{DataTemplate views:MovesPage}"
         Route="MovesPage" />
 
+    <ShellContent 
+    Title="Abilities"
+    ContentTemplate="{DataTemplate views:AbilityPage}"
+    Route="AbilityPage" />
+
 </Shell>

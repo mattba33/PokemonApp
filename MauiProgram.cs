@@ -27,6 +27,7 @@ public static class MauiProgram
         builder.Services.AddTransient<SearchPage>();
         builder.Services.AddSingleton<SearchViewModel>();
         builder.Services.AddTransient<MovesPage>();
+        builder.Services.AddTransient<AbilityPage>();
 
         return builder.Build();
     }

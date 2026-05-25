@@ -50,14 +50,36 @@ public class PokemonViewModel : INotifyPropertyChanged
     public ObservableCollection<PokemonStat> Stats { get; set; } = new();  
     public string StatsText => string.Join(", ", Stats.Select(s => $"{s.Stat.Name}: {s.BaseStat}"));
 
-    public ObservableCollection<string> Abilities { get; set; } = new();
-    public string AbilitiesText => string.Join(", ", Abilities);
+    public ObservableCollection<AbilityViewModel> Abilities { get; set; } = new();
+
+    private async Task LoadAbilitiesAsync(Pokemon pokemon)
+    {
+        Abilities.Clear();
+        foreach (var ability in pokemon.Abilities)
+        {
+            var abilityinfo = await _api.GetAbilityDescriptionAsync(ability.Ability.Url);
+
+            if (abilityinfo == null)
+                continue;
+
+            var text = _api.GetEnglishAbilityDescription(abilityinfo) ?? "";
+
+            Abilities.Add(new AbilityViewModel
+            {
+                Name = ability.Ability.Name,
+                Description = text,
+                IsHidden = ability.IsHidden
+            });
+        }
+        OnPropertyChanged(nameof(Abilities));
+    }
+
     public ObservableCollection<MoveViewModel> Moves { get; set; } = new();
 
     private async Task LoadMovesAsync(Pokemon pokemon)
     {
         Moves.Clear();
-        foreach (var move in pokemon.Moves.Take(10))
+        foreach (var move in pokemon.Moves)
         {
             var moveinfo = await _api.GetMoveInfoAsync(move.Move.Url);
 
@@ -106,20 +128,7 @@ public class PokemonViewModel : INotifyPropertyChanged
         }
 
         await LoadMovesAsync(pokemon);
-
-        Abilities.Clear();
-        foreach (var ability in pokemon.Abilities)
-        {
-            var abilityinfo = await _api.GetAbilityDescriptionAsync(ability.Ability.Url);
-
-            if (abilityinfo != null)
-            {
-                var text = _api.GetEnglishAbilityDescription(abilityinfo);
-                var isHidden = ability.IsHidden ? " (Hidden)" : "";
-
-                Abilities.Add($"{ability.Ability.Name}{isHidden} - {text}");
-            }
-        }
+        await LoadAbilitiesAsync(pokemon);
 
         if (species?.EvolutionChain?.Url != null)
         {
@@ -131,7 +140,6 @@ public class PokemonViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(Sprites));
         OnPropertyChanged(nameof(Description));
         OnPropertyChanged(nameof(StatsText));
-        OnPropertyChanged(nameof(AbilitiesText));
         OnPropertyChanged(nameof(EvolutionLine));
     } 
 }

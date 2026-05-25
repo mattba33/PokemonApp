@@ -46,7 +46,7 @@ public class Pokemon
 //Used in Ability.cs and Moves.cs
 public class EffectEntry
 {
-    [JsonPropertyName("effect")]
+    [JsonPropertyName("short_effect")]
     public string? Effect { get; set; }
     [JsonPropertyName("language")]
     public LanguageInfo? Language { get; set; }
