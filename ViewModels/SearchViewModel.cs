@@ -66,15 +66,22 @@ public class SearchViewModel : BindableObject
     private void OnToggleModeExecuted()
     {
         var currentBackground = (Color)Application.Current.Resources["GlobalPageBackground"];
-        if (currentBackground == Colors.White)
+
+        bool isLightMode = currentBackground == Colors.White;
+
+        if (isLightMode)
         {
             Application.Current.Resources["GlobalPageBackground"] = Colors.Black;
             Application.Current.Resources["GlobalTextColor"] = Colors.White;
+
+            Preferences.Set(ThemeKey, "Dark");
         }
         else
         {
             Application.Current.Resources["GlobalPageBackground"] = Colors.White;
             Application.Current.Resources["GlobalTextColor"] = Colors.Black;
+
+            Preferences.Set(ThemeKey, "Light");
         }
     }
 }

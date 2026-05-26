@@ -17,10 +17,6 @@
         Padding="20"
         Spacing="20">
 
-        <Button
-            Text="Dark/Light Mode"
-            Command="{Binding ToggleMode}" />
-
         <Label
             Text="Search Pokémon"
             FontSize="24"
@@ -30,6 +26,10 @@
             Placeholder="Search Pokémon"
             Text="{Binding SearchText}"
             SearchCommand="{Binding SearchCommand}" />
+
+        <Button
+            Text="Dark/Light Mode"
+            Command="{Binding ToggleMode}" />
 
     </VerticalStackLayout>
 
