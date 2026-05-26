@@ -26,11 +26,6 @@ public class PokemonApiService
         return JsonSerializer.Deserialize<Pokemon>(content);
     }
 
-    // public async Task<string> GetPokemonSprite(int id)
-    // {
-        
-    // }
-
 	public async Task<PokemonDescription?> GetDescriptionAsync(string speciesUrl)
     {
         var response = await _httpClient.GetAsync(speciesUrl);

@@ -5,6 +5,8 @@
              x:Class="PokemonApp.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="GlobalPageBackground">#FFFFFF</Color>
+            <Color x:Key="GlobalTextColor">#000000</Color>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

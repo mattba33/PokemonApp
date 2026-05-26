@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PokemonApp.Views.MainPage">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="PokemonApp.Views.MainPage"
+            BackgroundColor="{DynamicResource GlobalPageBackground}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource GlobalTextColor}" />
+        </Style>
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout
@@ -9,14 +17,10 @@
             Spacing="25">
 
             <Label Text="{Binding Name}"/>
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Types: "/>
-                        <Span Text="{Binding TypesText}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <HorizontalStackLayout>
+                <Label Text="Types: "/>
+                <Label Text="{Binding TypesText}"/>
+            </HorizontalStackLayout>
             <Image Source="{Binding Sprites.FrontDefault}" MaximumHeightRequest="150"/>
             <Image Source="{Binding Sprites.FrontShiny}" IsVisible="False" MaximumWidthRequest="150"/>
 
@@ -33,7 +37,6 @@
 
             </CollectionView>
             <Label Text="{Binding Description}"/>
-            <Label Text="{Binding AbilitiesText}"/>
             <Label Text="{Binding EvolutionLine}"/>
 
 
