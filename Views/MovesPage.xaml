@@ -14,6 +14,42 @@
     </ContentPage.Resources>
 
     <CollectionView ItemsSource="{Binding Moves}">
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout x:Name="MovesLayout" Orientation="Vertical" Span="1" />
+        </CollectionView.ItemsLayout>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Portrait">
+
+                    <VisualState.StateTriggers>
+                        <OrientationStateTrigger Orientation="Portrait" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter TargetName="MovesLayout" 
+                            Property="GridItemsLayout.Span" Value="1"/>
+                    </VisualState.Setters>
+
+                </VisualState>
+                <VisualState x:Name="Landscape">
+
+                    <VisualState.StateTriggers>
+                        <OrientationStateTrigger Orientation="Landscape" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter TargetName="MovesLayout" 
+                            Property="GridItemsLayout.Span" Value="2"/>
+                    </VisualState.Setters>
+
+                </VisualState>
+
+            </VisualStateGroup>
+            
+        </VisualStateManager.VisualStateGroups>
+
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Border Padding="10"

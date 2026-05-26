@@ -36,7 +36,9 @@
                 </CollectionView.ItemTemplate>
 
             </CollectionView>
-            <Label Text="{Binding Description}"/>
+            <HorizontalStackLayout>
+            <Label Text="Description:" />
+            <Label Text="{Binding Description}"/> 
             <Label Text="{Binding EvolutionLine}"/>
 
 

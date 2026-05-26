@@ -79,23 +79,47 @@ public class PokemonViewModel : INotifyPropertyChanged
     private async Task LoadMovesAsync(Pokemon pokemon)
     {
         Moves.Clear();
+
+        List<Task<MoveViewModel?>> moveTasks = new List<Task<MoveViewModel?>>();
+
         foreach (var move in pokemon.Moves)
         {
-            var moveinfo = await _api.GetMoveInfoAsync(move.Move.Url);
-
-            if (moveinfo == null)
-                continue;
-
-            Moves.Add(new MoveViewModel
-            {
-                Name = move.Move.Name,
-                Power = moveinfo.Power,
-                Accuracy = moveinfo.Accuracy,
-                Type = moveinfo.Type.Name,
-                Description = _api.GetEnglishMoveDescription(moveinfo) ?? ""
-            });
+            Task<MoveViewModel?> task = LoadSingleMoveAsync(move);
+            moveTasks.Add(task);
         }
+
+        MoveViewModel?[] results = await Task.WhenAll(moveTasks);
+
+        foreach (var result in results)
+        {
+            if (result != null)
+            {
+                Moves.Add(result);
+            }
+        }
+
         OnPropertyChanged(nameof(Moves));
+    }
+
+    private async Task<MoveViewModel?> LoadSingleMoveAsync(PokemonMoveSlot move)
+    {
+        var moveInfo = await _api.GetMoveInfoAsync(move.Move.Url);
+
+        if (moveInfo == null)
+            return null;
+
+        MoveViewModel viewModel = new MoveViewModel();
+
+        viewModel.Name = move.Move.Name;
+
+        viewModel.Power = moveInfo.Power;
+        viewModel.Accuracy = moveInfo.Accuracy;
+
+        viewModel.Type = moveInfo.Type?.Name ?? "";
+
+        viewModel.Description = _api.GetEnglishMoveDescription(moveInfo) ?? "";
+
+        return viewModel;
     }
 
     public EvolutionLine? EvolutionLine { get; set; }
@@ -112,7 +136,7 @@ public class PokemonViewModel : INotifyPropertyChanged
         {
             Types.Add(type.Type.Name);
         }
-
+        
         Sprites = pokemon.Sprites.FrontDefault != null ? pokemon.Sprites : null;
 
         var species = await _api.GetDescriptionAsync(pokemon.Species.Url);
