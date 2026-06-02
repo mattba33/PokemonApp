@@ -34,14 +34,14 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
+                
             </CollectionView>
-            <HorizontalStackLayout>
-            <Label Text="Description:" />
-            <Label Text="{Binding Description}"/> 
+         
+            <Label Text="Description:"/>
+            <Label Text="{Binding Description}"/>
+            <Label Text="Evolution Line"/>
             <Label Text="{Binding EvolutionLine}"/>
-
-
+            
         </VerticalStackLayout>
     </ScrollView>
 

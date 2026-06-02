@@ -19,7 +19,7 @@ public class SearchViewModel : BindableObject
         ToggleMode = new Command(OnToggleModeExecuted);
     }
 
-    private string _searchText;
+    private string _searchText = string.Empty;
     public string SearchText
     {
         get => _searchText;
@@ -41,6 +41,17 @@ public class SearchViewModel : BindableObject
         }
     }
 
+    private string _statusMessage = string.Empty;
+    public string? StatusMessage
+    {
+        get => _statusMessage;
+        set
+        {
+            _statusMessage = value;
+            OnPropertyChanged();
+        }
+    }
+
     public ICommand SearchCommand { get; }
     public ICommand ToggleMode { get; }
 
@@ -56,12 +67,18 @@ public class SearchViewModel : BindableObject
 
     private async Task SearchAsync()
     {
-        if (string.IsNullOrWhiteSpace(SearchText))
-            return;
-
         Result = await _searchService.SearchPokemonAsync(SearchText);
-    }
 
+        if (Result == null)
+        {
+            StatusMessage = "Pokemon Not found";
+            
+        }
+        else
+        {
+            StatusMessage = string.Empty;
+        }
+    }
 
     private void OnToggleModeExecuted()
     {

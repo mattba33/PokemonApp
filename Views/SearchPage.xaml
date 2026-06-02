@@ -22,6 +22,10 @@
             FontSize="24"
             HorizontalOptions="Center" />
 
+        <Label
+            Text="{Binding StatusMessage}"
+            HorizontalOptions="Center"/>
+
         <SearchBar
             Placeholder="Search Pokémon"
             Text="{Binding SearchText}"
@@ -30,6 +34,10 @@
         <Button
             Text="Dark/Light Mode"
             Command="{Binding ToggleMode}" />
+
+        <Label
+            Text="Search Pokemon Name and Pokdex Number, if you searching for a mega or regional form use '-' after the name"
+            HorizontalOptions="Center"/>
 
     </VerticalStackLayout>
 
