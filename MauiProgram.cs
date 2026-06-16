@@ -21,7 +21,7 @@ public static class MauiProgram
             });
 
         builder.Services.AddHttpClient<PokemonApiService>();
-        builder.Services.AddSingleton<PokemonItem>();
+        builder.Services.AddTransient<PokemonItem>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<SearchPage>();
         builder.Services.AddTransient<MovesPage>();
