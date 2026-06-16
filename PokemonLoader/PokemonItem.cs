@@ -1,4 +1,4 @@
-namespace PokemonApp.ViewModels;
+namespace PokemonApp.PokemonLoader;
 
 using PokemonApp.Models;
 using PokemonApp.Services;
@@ -10,11 +10,11 @@ using Microsoft.Maui.Controls;
 using PokemonApp.Views;
 
 [QueryProperty(nameof(PokemonName), "name")]
-public class PokemonViewModel : INotifyPropertyChanged
+public class PokemonItem : INotifyPropertyChanged
 {
     private readonly PokemonApiService _api;
 
-    public PokemonViewModel(PokemonApiService api)
+    public PokemonItem(PokemonApiService api)
     {
         _api = api;
     }

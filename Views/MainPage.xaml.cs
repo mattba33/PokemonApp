@@ -3,7 +3,7 @@
 using System.Collections.ObjectModel;
 using PokemonApp.Models;
 using PokemonApp.Services;
-using PokemonApp.ViewModels;
+using PokemonApp.PokemonLoader;
 using System.Diagnostics;
 using PokemonApp.Views;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ using Microsoft.Maui.Controls;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage(PokemonViewModel viewModel)
+    public MainPage(PokemonItem viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

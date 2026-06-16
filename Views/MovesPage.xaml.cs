@@ -1,10 +1,10 @@
 namespace PokemonApp.Views;
 
-using PokemonApp.ViewModels;
+using PokemonApp.PokemonLoader;
 
 public partial class MovesPage : ContentPage
 {
-    public MovesPage(PokemonViewModel viewModel)
+    public MovesPage(PokemonItem viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

@@ -1,10 +1,10 @@
 namespace PokemonApp.Views;
 
-using PokemonApp.ViewModels;
+using PokemonApp.PokemonLoader;
 
 public partial class AbilityPage : ContentPage
 {
-    public AbilityPage(PokemonViewModel viewModel)
+    public AbilityPage(PokemonItem viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

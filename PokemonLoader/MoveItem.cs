@@ -1,4 +1,4 @@
-namespace PokemonApp.ViewModels;
+namespace PokemonApp.PokemonLoader;
 
 public class MoveItem
 {

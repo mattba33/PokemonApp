@@ -5,7 +5,7 @@ using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using PokemonApp.Models;
 using PokemonApp.Services;
-using PokemonApp.ViewModels;
+using PokemonApp.PokemonLoader;
 using PokemonApp.Views;
 
 public static class MauiProgram
@@ -21,7 +21,7 @@ public static class MauiProgram
             });
 
         builder.Services.AddHttpClient<PokemonApiService>();
-        builder.Services.AddSingleton<PokemonViewModel>();
+        builder.Services.AddSingleton<PokemonItem>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<SearchPage>();
         builder.Services.AddTransient<MovesPage>();

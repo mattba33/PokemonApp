@@ -1,8 +1,8 @@
+namespace PokemonApp.Views;
+
 using PokemonApp.Models;
 using PokemonApp.Services;
 using Microsoft.Maui.Storage;
-
-namespace PokemonApp.Views;
 
 public partial class SearchPage : ContentPage
 {
