@@ -1,6 +1,6 @@
 namespace PokemonApp.ViewModels;
 
-public class MoveViewModel
+public class MoveItem
 {
     public string Name { get; set; } = "";
     public int? Power{ get; set; }

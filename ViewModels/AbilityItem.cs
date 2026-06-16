@@ -1,6 +1,6 @@
 namespace PokemonApp.ViewModels;
 
-public class AbilityViewModel
+public class AbilityItem
 {
     public string Name { get; set; } = "";
     public string Description { get; set; } = "";

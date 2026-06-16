@@ -52,7 +52,7 @@ public class PokemonViewModel : INotifyPropertyChanged
     public ObservableCollection<PokemonStat> Stats { get; set; } = new();  
     public string StatsText => string.Join(", ", Stats.Select(s => $"{s.Stat.Name}: {s.BaseStat}"));
 
-    public ObservableCollection<AbilityViewModel> Abilities { get; set; } = new();
+    public ObservableCollection<AbilityItem> Abilities { get; set; } = new();
 
     private async Task LoadAbilitiesAsync(Pokemon pokemon)
     {
@@ -66,7 +66,7 @@ public class PokemonViewModel : INotifyPropertyChanged
 
             var text = _api.GetEnglishAbilityDescription(abilityinfo) ?? "";
 
-            Abilities.Add(new AbilityViewModel
+            Abilities.Add(new AbilityItem
             {
                 Name = ability.Ability.Name,
                 Description = text,
@@ -76,21 +76,21 @@ public class PokemonViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(Abilities));
     }
 
-    public ObservableCollection<MoveViewModel> Moves { get; set; } = new();
+    public ObservableCollection<MoveItem> Moves { get; set; } = new();
 
     private async Task LoadMovesAsync(Pokemon pokemon)
     {
         Moves.Clear();
 
-        List<Task<MoveViewModel?>> moveTasks = new List<Task<MoveViewModel?>>();
+        List<Task<MoveItem?>> moveTasks = new List<Task<MoveItem?>>();
 
         foreach (var move in pokemon.Moves)
         {
-            Task<MoveViewModel?> task = LoadSingleMoveAsync(move);
+            Task<MoveItem?> task = LoadSingleMoveAsync(move);
             moveTasks.Add(task);
         }
 
-        MoveViewModel?[] results = await Task.WhenAll(moveTasks);
+        MoveItem?[] results = await Task.WhenAll(moveTasks);
 
         foreach (var result in results)
         {
@@ -103,14 +103,14 @@ public class PokemonViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(Moves));
     }
 
-    private async Task<MoveViewModel?> LoadSingleMoveAsync(PokemonMoveSlot move)
+    private async Task<MoveItem?> LoadSingleMoveAsync(PokemonMoveSlot move)
     {
         var moveInfo = await _api.GetMoveInfoAsync(move.Move.Url);
 
         if (moveInfo == null)
             return null;
 
-        MoveViewModel viewModel = new MoveViewModel();
+        MoveItem viewModel = new MoveItem();
 
         viewModel.Name = move.Move.Name;
 
