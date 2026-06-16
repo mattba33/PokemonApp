@@ -23,9 +23,7 @@ public static class MauiProgram
         builder.Services.AddHttpClient<PokemonApiService>();
         builder.Services.AddSingleton<PokemonViewModel>();
         builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddSingleton<SearchService>();
         builder.Services.AddTransient<SearchPage>();
-        builder.Services.AddSingleton<SearchViewModel>();
         builder.Services.AddTransient<MovesPage>();
         builder.Services.AddTransient<AbilityPage>();
 

@@ -16,7 +16,13 @@
             Padding="30,0"
             Spacing="25">
 
-            <Label Text="{Binding Name}"/>
+            <HorizontalStackLayout>
+                <Label Text="Pokedex Number: #"/>
+                <Label Text="{Binding PokedexNumber}"/>
+
+                <Label Padding="30, 0, 0, 0" Text="{Binding Name}"/>
+            </HorizontalStackLayout>
+       
             <HorizontalStackLayout>
                 <Label Text="Types: "/>
                 <Label Text="{Binding TypesText}"/>

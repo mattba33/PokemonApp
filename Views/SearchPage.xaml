@@ -23,21 +23,27 @@
             HorizontalOptions="Center" />
 
         <Label
-            Text="{Binding StatusMessage}"
-            HorizontalOptions="Center"/>
+            x:Name="StatusLabel"
+            HorizontalOptions="Center"
+            TextColor="Red" />
 
         <SearchBar
-            Placeholder="Search Pokémon"
-            Text="{Binding SearchText}"
-            SearchCommand="{Binding SearchCommand}" />
+            x:Name="SearchEntry"
+            Placeholder="Search Pokémon" />
 
         <Button
-            Text="Dark/Light Mode"
-            Command="{Binding ToggleMode}" />
+            Text="Search"
+            Clicked="SearchButton_Clicked" />
+
+        <Button
+            Text="Toggle Theme"
+            Clicked="ToggleTheme_Clicked" />
 
         <Label
-            Text="Search Pokemon Name and Pokdex Number, if you searching for a mega or regional form use '-' after the name"
-            HorizontalOptions="Center"/>
+            Text="Search Pokémon by name or Pokédex number. Use '-' for forms like mega or regional variants."
+            HorizontalOptions="Center"
+            FontSize="12"
+            Opacity="0.7" />
 
     </VerticalStackLayout>
 

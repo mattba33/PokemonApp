@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using Microsoft.Maui.Controls;
+using PokemonApp.Views;
 
 [QueryProperty(nameof(PokemonName), "name")]
 public class PokemonViewModel : INotifyPropertyChanged
@@ -42,6 +43,7 @@ public class PokemonViewModel : INotifyPropertyChanged
         }
     }
 
+    public int PokedexNumber { get; set; }
     public string Name { get; set; } = "";
     public ObservableCollection<string> Types { get; set; } = new();
     public string TypesText => string.Join(", ", Types);
@@ -129,6 +131,7 @@ public class PokemonViewModel : INotifyPropertyChanged
         var pokemon = await _api.GetPokemonAsync(pokemonName);
         if (pokemon == null) return;
 
+        PokedexNumber = pokemon.PokedexNumber;
         Name = pokemon.Name ?? "";
 
         Types.Clear();
@@ -159,6 +162,7 @@ public class PokemonViewModel : INotifyPropertyChanged
             EvolutionLine = await _api.GetEvolutionLineAsync(species.EvolutionChain.Url);
         }
 
+        OnPropertyChanged(nameof(PokedexNumber));
         OnPropertyChanged(nameof(Name));
         OnPropertyChanged(nameof(TypesText));
         OnPropertyChanged(nameof(Sprites));
